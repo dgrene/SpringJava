@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountRepository" class="com.kumard.repository.JdbcAccountRepositoryImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionRepository" class="com.kumard.repository.JdbcTransactionRepositoryImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="rewardRepository" class="com.kumard.repository.JdbcRewardRepositoryImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="emailService" class="com.kumard.service.EmailServiceImpl"/>
+
+    <bean id="bankService" class="com.kumard.service.BankServiceImpl">
+        <property name="accountRepository" ref="accountRepository"/>
+        <property name="emailService" ref="emailService"/>
+        <property name="transactionRepository" ref="transactionRepository"/>
+        <property name="rewardRepository" ref="rewardRepository"/>
+    </bean>
+
+</beans>

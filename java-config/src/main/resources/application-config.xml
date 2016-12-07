@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<context:component-scan base-package="com.kumard"/>-->
+    <context:annotation-config/>
+    <bean id="accountRepository" class="com.kumard.repository.JdbcAccountRepositoryImpl">
+    </bean>
+
+    <bean id="transactionRepository" class="com.kumard.repository.JdbcTransactionRepositoryImpl">
+    </bean>
+
+    <bean id="rewardRepository" class="com.kumard.repository.JdbcRewardRepositoryImpl">
+    </bean>
+
+    <bean id="emailService" class="com.kumard.service.EmailServiceImpl"/>
+
+    <bean id="bankService" class="com.kumard.service.BankServiceImpl">
+    </bean>
+
+</beans>
