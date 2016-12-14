@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    <context:annotation-config/>
+
+
+    <!-- TODO -2 configure DataSource transaction manager since we are using jdbc api in our code -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <bean class="com.kumard.service.AuditService"/>
+
+    <bean class="com.kumard.service.AccountServiceImpl"/>
+
+    <bean id="accountRepository" class="com.kumard.repository.JdbcAccountRepositoryImpl"/>
+
+    <bean id="transactionRepository" class="com.kumard.repository.JdbcTransactionRepositoryImpl"/>
+
+    <bean id="rewardRepository" class="com.kumard.repository.JdbcRewardRepositoryImpl"/>
+
+
+    <bean id="emailService" class="com.kumard.service.EmailServiceImpl"/>
+
+    <bean id="bankService" class="com.kumard.service.BankServiceImpl"/>
+
+
+</beans>
